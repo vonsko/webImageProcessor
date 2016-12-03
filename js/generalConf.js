@@ -1,7 +1,9 @@
+/* commented lines below are default values which are used in modules if in config below these fields are missing */
+
 // var imageProcessorConf = {
 // 	thumbSize: 150,
 // 	imageGallerySelector: "#mainArea",
-// 	fileTypesAllowed: "jpe?g|png",
+// 	fileTypesAllowed: "jpe?g|png", |  regexp
 // 	fileSizeAllowed: 5242880,
 // 	imageProcessorFileInput: "#imageLoader",
 // 	dropZoneSelector: ".callout"
