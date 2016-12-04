@@ -1,7 +1,11 @@
 /* global */
 
 var fileHandler = (function () {
-	var config = app.config();
+	var config = {};
+	function init (input) {
+		config = input;
+		domHandler.bindEvents();
+	}
 	var dropzonehandlers = {
 		// handlers for dropzone
 		drop: function (e) {
@@ -17,7 +21,7 @@ var fileHandler = (function () {
 			e.target.classList.remove("dropzonehover");
 			e.preventDefault();
 		}
-	}
+	};
 	function loadFiles (e) {
 		// preventing default behaviour - because drop navigate to dropped file
 		e.preventDefault();
@@ -36,7 +40,7 @@ var fileHandler = (function () {
 			// initializing fileReader api
 			var reader = new FileReader();
 			// overriding readers load event
-			reader.onload = imageProcessor.loadedImageHandler;
+			reader.onload = galleryModule.loadedImageHandler;
 			// reading file by reader and converting to base64
 			reader.readAsDataURL(file);
 		} else {
@@ -54,7 +58,7 @@ var fileHandler = (function () {
 		return file.size < config.fileSizeAllowed;
 	}
 	return {
-		// loading files method - prepared for use with draganddrop events and input[file] change event
+		init: init,
 		loadFiles: loadFiles,
 		processFile: processFile,
 		checkFileType: checkFileType,

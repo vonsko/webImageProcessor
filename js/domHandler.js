@@ -1,7 +1,11 @@
 /* global */
 
 var domHandler = (function () {
-	var config = app.config();
+	var config = {};
+	function init (input) {
+		config = input;
+		domHandler.bindEvents();
+	}
 	function clearThumbnailGallery() {
 		document.querySelector(config.imageGallerySelector).innerHTML = "";
 	}
@@ -37,6 +41,7 @@ var domHandler = (function () {
 		document.querySelector(config.dropZoneSelector).addEventListener("dragleave", fileHandler.dropZoneHandlers.dragleave, false);
 	}
 	return {
+		init: init,
 		clearThumbnailGallery: clearThumbnailGallery,
 		thumbnailClickHandler: thumbnailClickHandler,
 		buildPopup: buildPopup,
